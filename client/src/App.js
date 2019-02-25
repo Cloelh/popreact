@@ -9,12 +9,20 @@ import Home from "./Home.js";
 import About from "./About.js";
 
 
+
+
 class App extends Component {
     render() {
         return (
             <BrowserRouter>
                 <div>
-                    <Switch>
+                    <header>
+						<div>Potatoes or Pasta?</div>
+					</header>
+					<div>
+
+					</div>
+					<Switch>
                         <Route exact={true} path="/" component={Home} />
                         <Route exact={true} path="/home" component={Home} />
                         <Route exact={true} path="/about" component={About} />
