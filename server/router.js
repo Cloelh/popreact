@@ -58,26 +58,26 @@ router
   .patch('/statisticUpdate/:id', (req, res) => {
     if(req.body.answer === 1) {
       Quizzes
-      .findOneAndUpdate({   // Find the data
-         _id: req.params.id
-      }, {
-          $inc: { statistic1: 1 }
-      }, err => {
-          if (err)
-            res.status(500).send(err)
-          else res.json({ok: true});
-      })
+      .update( {_id : req.params.id} , 
+                {$inc : {"questions.$[elem].pointA" : 1} } , 
+                {arrayFilters: [{"elem.question": req.body.question}]},
+                err => {
+           if (err)
+             res.status(500).send(err)
+           else res.json({ok: true});
+
+      });
     } else if (req.body.answer === 2) {
       Quizzes
-      .findOneAndUpdate({   // Find the data
-         title: req.body.title
-      }, {
-          $inc: { statistic2: 1 }
-      }, err => {
-          if (err)
-            res.status(500).send(err)
-          else res.json({ok: true});
-      })
+      .update( {_id : req.params.id} , 
+                {$inc : {"questions.$[elem].pointB" : 1} } , 
+                {arrayFilters: [{"elem.question": req.body.question}]},
+                err => {
+           if (err)
+             res.status(500).send(err)
+           else res.json({ok: true});
+
+      });
     }
   })
   .post("/newQuizz", (req, res) => {

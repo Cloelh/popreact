@@ -70,15 +70,29 @@ class Questions extends Component {
 
     }   
 
+    async updateStatistic(answer) {
+        if (answer === 1) {
+            axios.patch(HTTP_SERVER_PORT + "statisticUpdate/" + this.state.quizz._id, {
+                "question": this.state.quizz.questions[this.state.current].question,
+                "answer":1,
+            })
+        } else if (answer === 2) {
+            axios.patch(HTTP_SERVER_PORT + "statisticUpdate/" + this.state.quizz._id, {
+                "question": this.state.quizz.questions[this.state.current].question,
+                "answer":2,
+            })
+        }
+         
+    }
     conseil(e) {
         e.preventDefault();
         this.setState({soumission : 1 - this.state.soumission});
         this.setState({pop : e.target.elements[0].checked ? 0 : 1});
         if (e.target.elements [0].checked){
-            //this.state.quizz.questions[this.state.current].pointA++
+            this.updateStatistic(1);
         }
         else {
-            //this.state.quizz.questions[this.state.current].pointB++
+            this.updateStatistic(2);
         }
         console.log('pointA : '+this.state.quizz.questions[this.state.current].pointA);
         console.log('pointB : '+this.state.quizz.questions[this.state.current].pointB);
