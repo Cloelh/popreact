@@ -16,8 +16,8 @@ class Home extends Component {
             <div>
                 <h1>The Pop</h1>
                 <h2>Get your life together</h2>
-                <Link to={'/createanaccount'}>Create an account</Link>
-                <Link to={'/connexion'}>Connexion</Link>
+                <div><Link to={'/createanaccount'}>Create an account</Link></div>
+                <div><Link to={'/connexion'}>Connexion</Link></div>
             </div>
         );
     }
