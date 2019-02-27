@@ -16,12 +16,8 @@ class Home extends Component {
             <div>
                 <h1>The Pop</h1>
                 <h2>Get your life together</h2>
-                <form>
-                    <input type="text" name="usrname" placeholder='Username'/><br/>
-                    <input type="password" name="password" placeholder='Password'/><br/>
-                    <input type="submit" value="Connexion"/>
-                </form>
                 <Link to={'/createanaccount'}>Create an account</Link>
+                <Link to={'/connexion'}>Connexion</Link>
             </div>
         );
     }

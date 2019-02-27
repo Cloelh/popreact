@@ -10,7 +10,7 @@ import About from "./About.js";
 import Quizzes from "./Quizzes.js"
 import Questions from "./questions.js"
 import Createanaccount from "./createanaccount";
-
+import Connexion from './connexion';
 
 
 
@@ -34,6 +34,7 @@ class App extends Component {
                         <Route exact={true} path="/questions/:id" component={Questions} />
                         <Route exact={true} path="/about" component={About} />
                         <Route exact={true} path="/createanaccount" component={Createanaccount} />
+                        <Route exact={true} path="/connexion" component={Connexion} />
                         <Route path="*" component={() => <p>Page Not Found</p>} />
                     </Switch>
                 </div>
