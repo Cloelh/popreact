@@ -76,8 +76,10 @@ let q3 = {
 
 }
 
+let persons = {nom : 'Lhenry', surname : 'Cloé', age : 21}
+
+
 let pourcent =[25, 90, 64];
-let score = {score : 0};
 
 
 let quizzes = [q1, q2];
@@ -86,7 +88,7 @@ export {
   quizzes,
   users,
     pourcent,
-    score
+    persons
 };
 
 

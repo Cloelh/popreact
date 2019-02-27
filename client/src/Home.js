@@ -14,14 +14,7 @@ class Home extends Component {
     render() {
         return (
                 <div>
-                    <nav>
-                        <img id="spud" src="../../images/Potatoe.png" height="60" width="75" alt=""/>
-                
-                        <h1><a href="about.html">Potatoes or Pasta?</a></h1>
-                
-                        <img id="pasta" src="../../images/pasta.png" height="70" width="70" alt=""/>
-                
-                    </nav>
+
                     <main>
                         <a href='index.html'><img id="logo" src="../../images/Logo.png" height="120" width="200" alt=""/></a>
                 

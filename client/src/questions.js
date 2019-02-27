@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {quizzes, users, pourcent, score} from './examples';
+import {quizzes, users, pourcent} from './examples';
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
 
 //root
@@ -55,7 +55,7 @@ class Questions extends Component {
         let nT=todo.filter(nb => nb!=n);
 
 
-        this.state = {current : n, soumission: 1, pop : 0, todo : nT, moy : 0};
+        this.state = {current : n, soumission: 1, pop : 0, todo : nT, moy : 0, score : 0};
         console.log("state",this.state);
 
         this.reponse = this.reponse.bind(this);
@@ -104,8 +104,7 @@ class Questions extends Component {
         let personalscore=tot/pourcent.length;
         console.log("personal score : "+personalscore);
         //console.log(score);
-        score.score = personalscore;
-        console.log("SCORE : " +score);
+        this.state.score = personalscore;
 
         //remplace A et B et nb dans la base de donnée
         this.quizz.questions[this.state.current].pointA = A;
