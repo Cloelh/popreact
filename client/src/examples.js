@@ -15,8 +15,8 @@ let q1 = {
     txtAnswers: ["Once a day minimum.", "I can't say exactly, sometimes, less than once a  month for sure"],
     imgAnswers: [],
     nbpoint:0,
-    pointA:0,
-    pointB:0,
+    pointA:20,
+    pointB:56,
       conseil:["PASTA ! You will probably die before finishing to read this sentence.", "POTATOE ! Keep that rhythm and you will enjoy every time you'll eat those junk food !"]
   }, {
     question: 'Where is Jenny, the sister of Brian?',

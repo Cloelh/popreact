@@ -23,8 +23,12 @@ class Question extends Component {
                         <img src={HTTP_SERVER_PORT_PICTURES + img}></img></div>)}
                     <input type="submit" value="Submit"/>
                 </form>
-                {this.props.soumission == 0 ? <div>{this.props.question.conseil[this.props.pop]}<button onClick={e=>this.props.reponse(e)}>Next</button></div>
-                    : null}
+                {this.props.soumission == 0 ?
+                    <div>Tu fais partie des {this.props.moy}% {this.props.question.conseil[this.props.pop]}
+                        <button onClick={e=>this.props.reponse(e)}>Next</button>
+                    </div>
+                    : null
+                }
             </div>
         );
     }
@@ -51,7 +55,7 @@ class Questions extends Component {
         let nT=todo.filter(nb => nb!=n);
 
 
-        this.state = {current : n, soumission: 1, pop : 0, todo : nT};
+        this.state = {current : n, soumission: 1, pop : 0, todo : nT, moy : 0};
         console.log("state",this.state);
 
         this.reponse = this.reponse.bind(this);
@@ -60,17 +64,43 @@ class Questions extends Component {
     }
 
     conseil(e) {
+        console.log(this.state.moy)
         e.preventDefault();
         this.setState({soumission : 1 - this.state.soumission});
         this.setState({pop : e.target.elements[0].checked ? 0 : 1});
+
+        //let A et B et nbpont
+        let A =this.quizz.questions[this.state.current].pointA;
+        let B =this.quizz.questions[this.state.current].pointB;
+        let nb=this.quizz.questions[this.state.current].nbpoint;
+
+        //calcul des nouv A et B
         if (e.target.elements [0].checked){
-            this.quizz.questions[this.state.current].pointA++
+            A++
         }
         else {
-            this.quizz.questions[this.state.current].pointB++
+            B++
         }
-        console.log('pointA : '+this.quizz.questions[this.state.current].pointA);
-        console.log('pointB : '+this.quizz.questions[this.state.current].pointB);
+
+        //verification
+        console.log('pointA : '+A);
+        console.log('pointB : '+B);
+
+        //calcul du pourcentage
+        nb = A+B;
+        if (e.target.elements [0].checked) {
+            this.state.moy = (A/nb)*100;
+        }
+        else {
+            this.state.moy = (B/nb)*100
+        }
+        console.log(this.state.moy+"%");
+
+
+        //remplace A et B et nb dans la base de donnée
+        this.quizz.questions[this.state.current].pointA = A;
+        this.quizz.questions[this.state.current].pointB = B;
+        this.quizz.questions[this.state.current].nbpoint = nb;
 
     }
 
