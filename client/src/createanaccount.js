@@ -1,30 +1,28 @@
 import React, {Component} from 'react';
-import {Link, LinkA} from 'react-router-dom';
-
-import Createanaccount from './createanaccount';
 
 import {quizzes, users} from './examples';
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
 
 //root
+import Home from './Home';
 
 
-
-class Home extends Component {
+class Createanaccount extends Component {
     render() {
         return (
             <div>
-                <h1>The Pop</h1>
-                <h2>Get your life together</h2>
+                <h1>Create an new account</h1>
+                <h2>And get your life together</h2>
                 <form>
+                    <input type="text" name="name" placeholder='Name'/><br/>
                     <input type="text" name="usrname" placeholder='Username'/><br/>
                     <input type="password" name="password" placeholder='Password'/><br/>
+                    <input type='number' name="age" placeholder='Your age'/><br/>
                     <input type="submit" value="Connexion"/>
                 </form>
-                <Link to={'/createanaccount'}>Create an account</Link>
             </div>
-        );
+    );
     }
 }
 
-export default Home;
+export default Createanaccount;
