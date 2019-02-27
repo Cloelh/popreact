@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {quizzes, users} from './examples';
+import {quizzes, users, pourcent, score} from './examples';
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
 
 //root
@@ -24,8 +24,8 @@ class Question extends Component {
                     <input type="submit" value="Submit"/>
                 </form>
                 {this.props.soumission == 0 ?
-                    <div>Tu fais partie des {this.props.moy}% {this.props.question.conseil[this.props.pop]}
-                        <button onClick={e=>this.props.reponse(e)}>Next</button>
+                    <div><div>You're like {this.props.moy}% users</div><div> {this.props.question.conseil[this.props.pop]}</div>
+                        <div><button onClick={e=>this.props.reponse(e)}>Next</button></div>
                     </div>
                     : null
                 }
@@ -89,12 +89,22 @@ class Questions extends Component {
         //calcul du pourcentage
         nb = A+B;
         if (e.target.elements [0].checked) {
-            this.state.moy = (A/nb)*100;
+            this.state.moy = Math.floor((A/nb)*100);
         }
         else {
-            this.state.moy = (B/nb)*100
+            this.state.moy = Math.floor((B/nb)*100);
         }
         console.log(this.state.moy+"%");
+        pourcent.push(this.state.moy);
+        console.log("nouveau tableau"+ pourcent);
+        let tot=0;
+        for(let i=0; i < pourcent.length; i++){
+            tot=tot+pourcent[i];
+        }
+        let personalscore=tot/pourcent.length;
+        console.log("personal score : "+personalscore);
+        score=3;
+        console.log("SCORE : " +score);
 
         //remplace A et B et nb dans la base de donnée
         this.quizz.questions[this.state.current].pointA = A;

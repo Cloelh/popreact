@@ -11,6 +11,21 @@ header{
     justify-content: space-around;
     align-items: center;
 }
+footer{
+     background-color: black;
+     color: white;
+     height:50px;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+ }
+
+.contentm{
+    display: flex;
+    align-items: center;
+    min-height: 510px;
+}
+
 
 h1{
     display: flex;
@@ -36,5 +51,10 @@ strong{
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
+    }
+
+
+    img {
+        height: 250px;
     }
 

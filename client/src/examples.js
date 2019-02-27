@@ -76,10 +76,17 @@ let q3 = {
 
 }
 
+let pourcent =[25, 90, 64];
+let score=0;
+
 
 let quizzes = [q1, q2];
 let users = [u1];
 export {
   quizzes,
-  users
+  users,
+    pourcent,
+    score
 };
+
+
