@@ -77,7 +77,7 @@ let q3 = {
 }
 
 let pourcent =[25, 90, 64];
-let score=0;
+let score = {score : 0};
 
 
 let quizzes = [q1, q2];

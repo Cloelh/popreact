@@ -103,7 +103,8 @@ class Questions extends Component {
         }
         let personalscore=tot/pourcent.length;
         console.log("personal score : "+personalscore);
-        score=3;
+        //console.log(score);
+        score.score = personalscore;
         console.log("SCORE : " +score);
 
         //remplace A et B et nb dans la base de donnée
