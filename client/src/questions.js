@@ -12,6 +12,8 @@ import {Link} from "./Quizzes";
 
 class Question extends Component {
     render() {
+        const q = this.props.question;
+        console.log("inQuestion",q);
         return (
             <div>
                 {this.props.question.question}
@@ -33,15 +35,31 @@ class Question extends Component {
 class Questions extends Component {
     constructor(props) {
         super(props);
-        this.quizz = quizzes.filter(q=> q._uid = this.props.match.params.id)[0];
-        this.state = {current : 0, soumission: 1, pop : 0};
+        this.quizz = quizzes.filter(q=> q._uid == this.props.match.params.id)[0];
+
+        let todo = [];
+        for(let i = 0; i < this.quizz.questions.length;i++)
+            todo.push(i);
+
+        console.log(todo);
+        let min =0;
+        let max=todo.length;
+        let rand = Math.floor(min + (Math.random()* (max-min)));
+        console.log("rand",rand);
+        let n=todo[rand];
+        console.log(n + " " + rand);
+        let nT=todo.filter(nb => nb!=n);
+
+
+        this.state = {current : n, soumission: 1, pop : 0, todo : nT};
+        console.log("state",this.state);
+
         this.reponse = this.reponse.bind(this);
         this.conseil = this.conseil.bind(this);
     }
 
     conseil(e) {
         e.preventDefault();
-        console.log(this.props.question.question);
         this.setState({soumission : 1 - this.state.soumission});
         this.setState({pop : e.target.elements[0].checked ? 0 : 1});
     }
@@ -49,16 +67,35 @@ class Questions extends Component {
      reponse(e) {
         e.preventDefault();
         console.log(1);
-        this.setState({current : this.state.current+1});
-         this.setState({soumission : 1 - this.state.soumission});
+        let nT = null;
+        let n = 0;
+         if(this.state.todo.length >0) {
+             let min = 0;
+
+             let max = this.state.todo.length;
+             let rand = Math.floor(min + (Math.random() * (max - min)));
+             console.log("rand", rand);
+             n = this.state.todo[rand];
+             nT = this.state.todo.filter(nb => nb != n);
+             console.log("Now : " + n + " " + rand);
+         } else
+             nT = false;
+
+         this.setState({current : n, todo : nT});
+
+
+        this.setState({soumission : 1 - this.state.soumission});
     }
 
     render() {
-        if(this.state.current == this.quizz.questions.length)
-            return (<div>fini</div>
+        if(this.state.todo === false) {
+            return (<div>Fini</div>);
+        }
 
-            );
-
+           // );
+        const q = this.quizz.questions[this.state.current];
+        console.log("Q",q);
+        console.log("current",this.state.current);
         return (
             <div>
                 {this.quizz.name}

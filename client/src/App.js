@@ -26,7 +26,7 @@ class App extends Component {
                         <Route exact={true} path="/home" component={Home} />
                         <Route exact={true} path="/quizzes" component={Quizzes} />
                         <Route exact={true} path="/questions/:id" component={Questions} />
-                        <Route exact={true} path="/about" component={About} />
+                        <Route exact={true} path="/about" componbent={About} />
                         <Route path="*" component={() => <p>Page Not Found</p>} />
                     </Switch>
                 </div>

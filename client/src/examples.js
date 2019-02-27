@@ -5,8 +5,8 @@ let u1 = {
 }
 
 let q1 = {
-    _uid: 0,
-    name: 'quizz1',
+    _uid: 1,
+    name: 'quizz0',
   icon: 'quizz1/quizz1.jpg',
   keywords: ['kitchen', 'english'],
   questions: [{
@@ -43,8 +43,8 @@ let q1 = {
 }
 
 let q2 = {
-    _uid: 1,
-    name: 'quizz2',
+    _uid: 2,
+    name: 'quizz1',
   icon: 'quizz2/aix.jpg',
   keywords: ['Aix', 'Tourisme'],
   questions: [{
