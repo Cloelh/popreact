@@ -63,7 +63,7 @@ class Questions extends Component {
         e.preventDefault();
         this.setState({soumission : 1 - this.state.soumission});
         this.setState({pop : e.target.elements[0].checked ? 0 : 1});
-        if (e.target.elements[0].checked){
+        if (e.target.elements [0].checked){
             this.quizz.questions[this.state.current].pointA++
         }
         else {
