@@ -56,12 +56,22 @@ class Questions extends Component {
 
         this.reponse = this.reponse.bind(this);
         this.conseil = this.conseil.bind(this);
+
     }
 
     conseil(e) {
         e.preventDefault();
         this.setState({soumission : 1 - this.state.soumission});
         this.setState({pop : e.target.elements[0].checked ? 0 : 1});
+        if (e.target.elements[0].checked){
+            this.quizz.questions[this.state.current].pointA++
+        }
+        else {
+            this.quizz.questions[this.state.current].pointB++
+        }
+        console.log('pointA : '+this.quizz.questions[this.state.current].pointA);
+        console.log('pointB : '+this.quizz.questions[this.state.current].pointB);
+
     }
 
      reponse(e) {

@@ -11,7 +11,12 @@ class Home extends Component {
     render() {
         return (
             <div>
-                Home
+                <h1>The Pop</h1>
+                <h2>Get your life together</h2>
+                <form>
+                    Username: <input type="text" name="usrname"/><br/>
+                    <input type="submit" value="Submit"/>
+                </form>
             </div>
         );
     }
