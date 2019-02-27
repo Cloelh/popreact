@@ -96,12 +96,10 @@ class Questions extends Component {
         }
         console.log(this.state.moy+"%");
 
-
         //remplace A et B et nb dans la base de donnée
         this.quizz.questions[this.state.current].pointA = A;
         this.quizz.questions[this.state.current].pointB = B;
         this.quizz.questions[this.state.current].nbpoint = nb;
-
     }
 
      reponse(e) {
@@ -140,7 +138,7 @@ class Questions extends Component {
             <div>
                 {this.quizz.name}
                 <Question soumission= {this.state.soumission} question={this.quizz.questions[this.state.current]}
-                          reponse = {this.reponse} conseil = {this.conseil} pop = {this.state.pop} />
+                          reponse = {this.reponse} conseil = {this.conseil} pop = {this.state.pop} moy = {this.state.moy}/>
             </div>
         );
     }
