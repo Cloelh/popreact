@@ -12,6 +12,7 @@ import Questions from "./questions.js"
 import Createanaccount from "./createanaccount";
 import Connexion from './connexion';
 import Count from './count';
+import Createquizz from './createquizz';
 
 
 
@@ -52,6 +53,7 @@ class App extends Component {
                             <Route exact={true} path="/createanaccount" component={Createanaccount} />
                             <Route exact={true} path="/connexion" component={Connexion} />
                             <Route exact={true} path="/count" component={Count} />
+                            <Route exact={true} path="/createquizz" component={Createquizz} />
                             <Route path="*" component={() => <p>Page Not Found</p>} />
                         </Switch>
                     </div>

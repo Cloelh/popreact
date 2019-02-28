@@ -36,6 +36,7 @@ let q1 = {
       pointA:0,
       pointB:0,
       conseil:['PASTA: ', 'POTATOES : ']
+
   }],
   published: true,
   owner: db.users.findOne({name: "luk"}),
