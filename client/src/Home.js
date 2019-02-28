@@ -15,12 +15,12 @@ class Home extends Component {
     constructor(){
         super();
         this.state = {
-            quizzes : []
+            users : []
         }
     }
 
     async loadData() {
-      const quizzes = (await axios.get(HTTP_SERVER_PORT + 'quizzes')).data;  // We need to wait for the response.
+      const users = (await axios.get(HTTP_SERVER_PORT + 'quizzes')).data;  // We need to wait for the response.
       this.setState({quizzes: quizzes});
     }   
 
@@ -29,7 +29,7 @@ class Home extends Component {
             <div>
                 <h1>The Pop</h1>
                 <h2>Get your life together</h2>
-                <form>
+                <form onSubmit={(e) => this.logIn(e)}>
                     <input type="text" name="usrname" placeholder='Username'/><br/>
                     <input type="password" name="password" placeholder='Password'/><br/>
                     <input type="submit" value="Connexion"/>

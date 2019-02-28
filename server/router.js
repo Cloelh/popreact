@@ -25,7 +25,7 @@ router
   .get("/users/:userName", (req, res) => {
     Users
       .findOne({
-        name: req.params.userName
+        userName: req.params.userName
     }).exec((err, data) => {
         if (err) return res.status(500).send(err);
         else res.json(data);
