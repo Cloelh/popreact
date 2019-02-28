@@ -24,12 +24,11 @@ class Home extends Component {
                         </div>
 
                         <Link to='/createanaccount'><button className='button1'>Sign Up</button></Link>
-
-                        <a href='login.html'><button className='button1'>Log In</button></a>
+                        <Link to='/'><button className='button1'>Log In</button></Link>
                 
                         <h3>Special POP Quiz</h3>
-                
-                        <a href='#'><button class='button'>Start Quiz</button></a>
+
+                        <Link to='/'><button class="button">Start Quizz</button></Link>
                     </main>
                 </div>
                 );
