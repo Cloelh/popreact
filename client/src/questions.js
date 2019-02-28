@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import {quizzes, users, pourcent} from './examples';
-import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
-
+//import {quizzes, users} from './examples';
+import {HTTP_SERVER_PORT_PICTURES, HTTP_SERVER_PORT} from './constants.js';
+import axios from 'axios'
 //root
 import {Link} from "./Quizzes";
 
@@ -39,10 +39,25 @@ class Question extends Component {
 class Questions extends Component {
     constructor(props) {
         super(props);
-        this.quizz = quizzes.filter(q=> q._uid == this.props.match.params.id)[0];
+        this.quizz = [];
+        
+
+        console.log(this.quizz);
+
+        this.state = {quizz : null, current : 0, soumission: 1, pop : 0, todo : []};
+        console.log("state",this.state);
+        this.reponse = this.reponse.bind(this);
+        this.conseil = this.conseil.bind(this);
+        this.loadData();   
+    }
+
+    async loadData() {
+        const quizzes = (await axios.get(HTTP_SERVER_PORT + 'quizz/' + this.props.match.params.id)).data // We need to wait for the response.
+        this.setState({quizz : quizzes});
+
 
         let todo = [];
-        for(let i = 0; i < this.quizz.questions.length;i++)
+        for(let i = 0; i < quizzes.questions.length;i++)
             todo.push(i);
 
         console.log(todo);
@@ -54,15 +69,23 @@ class Questions extends Component {
         console.log(n + " " + rand);
         let nT=todo.filter(nb => nb!=n);
 
+        this.setState({current : n, todo:nT});
+    }   
 
-        this.state = {current : n, soumission: 1, pop : 0, todo : nT, moy : 0, score : 0};
-        console.log("state",this.state);
-
-        this.reponse = this.reponse.bind(this);
-        this.conseil = this.conseil.bind(this);
-
+    async updateStatistic(answer) {
+        if (answer === 1) {
+            axios.patch(HTTP_SERVER_PORT + "statisticUpdate/" + this.state.quizz._id, {
+                "question": this.state.quizz.questions[this.state.current].question,
+                "answer":1,
+            })
+        } else if (answer === 2) {
+            axios.patch(HTTP_SERVER_PORT + "statisticUpdate/" + this.state.quizz._id, {
+                "question": this.state.quizz.questions[this.state.current].question,
+                "answer":2,
+            })
+        }
+         
     }
-
     conseil(e) {
         console.log(this.state.moy)
         e.preventDefault();
@@ -72,22 +95,25 @@ class Questions extends Component {
         //let A et B et nbpont
         let A =this.quizz.questions[this.state.current].pointA;
         let B =this.quizz.questions[this.state.current].pointB;
-        let nb=this.quizz.questions[this.state.current].nbpoint;
+        let nb= A + B;
+        let pourcent = [];
 
         //calcul des nouv A et B
         if (e.target.elements [0].checked){
-            A++
+            this.updateStatistic(1);
         }
         else {
-            B++
+            this.updateStatistic(2);
         }
+        console.log('pointA : '+this.state.quizz.questions[this.state.current].pointA);
+        console.log('pointB : '+this.state.quizz.questions[this.state.current].pointB);
 
         //verification
         console.log('pointA : '+A);
         console.log('pointB : '+B);
 
         //calcul du pourcentage
-        nb = A+B;
+
         if (e.target.elements [0].checked) {
             this.state.moy = Math.floor((A/nb)*100);
         }
@@ -136,19 +162,22 @@ class Questions extends Component {
     }
 
     render() {
+        if(this.state.quizz == null)
+            return (<div>Loading</div>);
+
         if(this.state.todo === false) {
             return (<div>Fini</div>);
         }
 
            // );
-        const q = this.quizz.questions[this.state.current];
+        const q = this.state.quizz.questions[this.state.current];
         console.log("Q",q);
         console.log("current",this.state.current);
         return (
             <div>
-                {this.quizz.name}
-                <Question soumission= {this.state.soumission} question={this.quizz.questions[this.state.current]}
-                          reponse = {this.reponse} conseil = {this.conseil} pop = {this.state.pop} moy = {this.state.moy}/>
+                {this.state.quizz.name}
+                <Question soumission= {this.state.soumission} question={this.state.quizz.questions[this.state.current]}
+                          reponse = {this.reponse} conseil = {this.conseil} pop = {this.state.pop} />
             </div>
         );
     }
