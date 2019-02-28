@@ -4,6 +4,7 @@ import {Link, LinkA} from 'react-router-dom';
 import Createanaccount from './createanaccount';
 
 import {quizzes, users} from './examples';
+
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
 
 //root
@@ -21,8 +22,9 @@ class Home extends Component {
                         <div id="info">
                             <p>Pop is a new concept that we have developed which gives a new twist to the generic idea of a 'quiz'. We have done away with the competitive scoring aspect of the quiz as our application is orientated at the more serious matters one faces in their life, age dependant.</p>
                         </div>
-                
-                        <a href='SignUp.js'><button className='button1'>Sign Up</button></a>
+
+                        <Link to='/createanaccount'><button className='button1'>Sign Up</button></Link>
+
                         <a href='login.html'><button className='button1'>Log In</button></a>
                 
                         <h3>Special POP Quiz</h3>
