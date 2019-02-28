@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 
-import {quizzes, users} from './examples';
-import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
-
+//import {quizzes, users} from './examples';
+import {HTTP_SERVER_PORT_PICTURES, HTTP_SERVER_PORT} from './constants.js';
+import axios from 'axios'
 //root
 import Home from './Home';
 
 
 class Createanaccount extends Component {
+    constructor(){
+        super();
+        
+    }
+
     render() {
         return (
             <div>

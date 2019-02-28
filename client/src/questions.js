@@ -11,9 +11,15 @@ import {Link} from "./Quizzes";
 
 
 class Question extends Component {
+    constructor(props) {
+        super (props);
+    }
+
     render() {
         const q = this.props.question;
         console.log("inQuestion",q);
+        console.log("props: " , this.props)
+
         return (
             <div>
                 {this.props.question.question}
@@ -93,8 +99,8 @@ class Questions extends Component {
         this.setState({pop : e.target.elements[0].checked ? 0 : 1});
 
         //let A et B et nbpont
-        let A =this.quizz.questions[this.state.current].pointA;
-        let B =this.quizz.questions[this.state.current].pointB;
+        let A =this.state.quizz.questions[this.state.current].pointA;
+        let B =this.state.quizz.questions[this.state.current].pointB;
         let nb= A + B;
         let pourcent = [];
 
@@ -133,9 +139,9 @@ class Questions extends Component {
         this.state.score = personalscore;
 
         //remplace A et B et nb dans la base de donnée
-        this.quizz.questions[this.state.current].pointA = A;
-        this.quizz.questions[this.state.current].pointB = B;
-        this.quizz.questions[this.state.current].nbpoint = nb;
+        this.state.quizz.questions[this.state.current].pointA = A;
+        this.state.quizz.questions[this.state.current].pointB = B;
+        this.state.quizz.questions[this.state.current].nbpoint = nb;
     }
 
      reponse(e) {
