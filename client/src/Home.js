@@ -42,7 +42,7 @@ class Home extends Component {
                 
                         <h3>Special POP Quiz</h3>
 
-                        <Link to='/'><button class="button">Start Quizz</button></Link>
+                        <Link to='/quizzes'><button class="button">Start Quizz</button></Link>
                     </main>
                 </div>
                 );
