@@ -3,15 +3,29 @@ import {Link, LinkA} from 'react-router-dom';
 
 import Createanaccount from './createanaccount';
 
-import {quizzes, users} from './examples';
 
-import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
+//import {quizzes, users} from './examples';
+import {HTTP_SERVER_PORT_PICTURES, HTTP_SERVER_PORT} from './constants.js';
+import axios from 'axios'
+
 
 //root
 
 
 
 class Home extends Component {
+    constructor(){
+        super();
+        this.state = {
+            quizzes : []
+        }
+    }
+
+    async loadData() {
+      const quizzes = (await axios.get(HTTP_SERVER_PORT + 'quizzes')).data;  // We need to wait for the response.
+      this.setState({quizzes: quizzes});
+    }   
+
     render() {
         return (
                 <div>
@@ -32,6 +46,7 @@ class Home extends Component {
                     </main>
                 </div>
                 );
+
     }
 }
 

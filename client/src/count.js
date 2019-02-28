@@ -16,12 +16,10 @@ class Count extends Component {
                 </div>
 
                 <div>
-                    <Li
+                    g,rkeo
                 </div>
-            </div>
-
-            <div>
                 <Link to='./'><button className='button'>Create questions</button></Link>
+
             </div>
         );
     }
